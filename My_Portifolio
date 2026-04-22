@@ -1,0 +1,88 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class PortfolioApp extends JFrame {
+
+    public PortfolioApp() {
+        // Set up the window
+        setTitle("Avani Tyagi - Portfolio");
+        setSize(450, 700);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        getContentPane().setBackground(new Color(10, 10, 15)); // Deep dark blue-black
+        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+
+        // Neon Purple Color
+        Color neonPurple = new Color(191, 0, 255);
+
+        // 1. Header Section
+        JLabel nameLabel = new JLabel("Hi, I'm Avani Tyagi");
+        nameLabel.setFont(new Font("SansSerif", Font.BOLD, 32));
+        nameLabel.setForeground(neonPurple);
+        nameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JLabel subLabel = new JLabel("Python Developer | AI/ML Enthusiast");
+        subLabel.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        subLabel.setForeground(new Color(180, 180, 200));
+        subLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        // 2. About Section
+        JPanel aboutPanel = createSection("ABOUT ME", 
+            "B.Tech student with a strong interest in technology. " +
+            "Building practical solutions and exploring how intelligent " +
+            "systems solve real-world problems.");
+
+        // 3. Skills Section (Core Arsenal)
+        JPanel skillsPanel = createSection("CORE ARSENAL", 
+            "Languages: Java, Python, C++\n" +
+            "Web: JavaScript, HTML5, MySQL\n" +
+            "AI & Tools: AI/ML, LLMs, Git & Github");
+
+        // Adding components with spacing
+        add(Box.createRigidArea(new Dimension(0, 50)));
+        add(nameLabel);
+        add(subLabel);
+        add(Box.createRigidArea(new Dimension(0, 60)));
+        add(aboutPanel);
+        add(Box.createRigidArea(new Dimension(0, 25)));
+        add(skillsPanel);
+
+        // Center on screen
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    private JPanel createSection(String title, String content) {
+        JPanel panel = new JPanel();
+        panel.setBackground(new Color(20, 20, 30)); // Slightly lighter dark for cards
+        panel.setBorder(BorderFactory.createLineBorder(new Color(191, 0, 255), 2)); // Purple border
+        panel.setLayout(new BorderLayout());
+        panel.setMaximumSize(new Dimension(400, 140));
+        panel.setPadding(10); // Logic for inner spacing
+
+        JLabel titleLabel = new JLabel(" " + title);
+        titleLabel.setForeground(new Color(191, 0, 255));
+        titleLabel.setFont(new Font("SansSerif", Font.BOLD, 16));
+        
+        JTextArea area = new JTextArea(content);
+        area.setMargin(new Insets(10, 10, 10, 10));
+        area.setWrapStyleWord(true);
+        area.setLineWrap(true);
+        area.setEditable(false);
+        area.setFont(new Font("SansSerif", Font.PLAIN, 13));
+        area.setForeground(Color.WHITE);
+        area.setBackground(new Color(20, 20, 30));
+
+        panel.add(titleLabel, BorderLayout.NORTH);
+        panel.add(area, BorderLayout.CENTER);
+        return panel;
+    }
+
+    public static void main(String[] args) {
+        // Modern look for Windows/Mac
+        try {
+            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+        } catch (Exception e) {}
+        
+        new PortfolioApp();
+    }
+}
